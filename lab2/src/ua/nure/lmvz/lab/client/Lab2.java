@@ -16,6 +16,18 @@ import com.smartgwt.client.widgets.tree.TreeNode;
 import com.smartgwt.client.widgets.form.fields.events.ChangeEvent;  
 import com.smartgwt.client.widgets.form.fields.events.ChangeHandler;  
 import com.google.gwt.core.client.EntryPoint;  
+import com.smartgwt.client.types.Alignment;  
+import com.smartgwt.client.types.ListGridFieldType;  
+import com.smartgwt.client.widgets.Canvas;  
+import com.smartgwt.client.widgets.form.DynamicForm;  
+import com.smartgwt.client.widgets.form.fields.CheckboxItem;  
+import com.smartgwt.client.widgets.form.fields.events.ChangeEvent;  
+import com.smartgwt.client.widgets.form.fields.events.ChangeHandler;  
+import com.smartgwt.client.widgets.grid.ListGrid;  
+import com.smartgwt.client.widgets.grid.ListGridField;  
+import com.smartgwt.client.widgets.layout.VLayout;  
+import ua.nure.lmvz.lab.client.CountrySampleData;  
+
   
 public class Lab2 implements EntryPoint {  
   
@@ -40,8 +52,8 @@ public class Lab2 implements EntryPoint {
   
         final TabSet topTabSet = new TabSet();  
         topTabSet.setTabBarPosition(Side.TOP);  
-        topTabSet.setWidth(700);  
-        topTabSet.setHeight100();  
+        topTabSet.setWidth(700); 
+        topTabSet.setHeight(400);
         final DynamicForm form = new DynamicForm();  
         
   /*
@@ -52,18 +64,18 @@ public class Lab2 implements EntryPoint {
         categoryItem.setDataSource(dataSource);  
         categoryItem.setCanSelectParentItems(true);     
         categoryItem.setValueTree(tree);  
-      */
+     */ 
         Tree tree = new Tree();  
         tree.setRoot(departmentRoot);  
   
-        IPickTreeItem departmentItem = new IPickTreeItem();  
-        departmentItem.setTitle("Department");  
-        departmentItem.setValueField("name");  
-        departmentItem.setValueTree(tree);  
+        IPickTreeItem departmentItem1 = new IPickTreeItem();  
+        departmentItem1.setTitle("Department");  
+        departmentItem1.setValueField("name");  
+        departmentItem1.setValueTree(tree);  
         Tab tTab1 = new Tab("Дерево");
-        form.setItems(departmentItem);
+        form.setItems(departmentItem1);
         tTab1.setPane(form);
-        
+      
         Tab tTab2 = new Tab("Зависимые комбо-боксы");
         final DynamicForm form2 = new DynamicForm();  
         form2.setWidth(500);  
@@ -75,27 +87,53 @@ public class Lab2 implements EntryPoint {
         departments.put("Manufacturing", new String[]{"Design", "Development", "QA"});  
         departments.put("Services", new String[]{"Support", "Consulting"});  
   
-        SelectItem divisionItem2 = new SelectItem();  
-        divisionItem2.setName("division");  
-        divisionItem2.setTitle("Division");  
-        divisionItem2.setValueMap("Marketing", "Sales", "Manufacturing", "Services");  
-        divisionItem2.addChangeHandler(new ChangeHandler() {  
+        SelectItem divisionItem = new SelectItem();  
+        divisionItem.setName("division");  
+        divisionItem.setTitle("Division");  
+        divisionItem.setValueMap("Marketing", "Sales", "Manufacturing", "Services");  
+        divisionItem.addChangeHandler(new ChangeHandler() {  
             public void onChange(ChangeEvent event) {  
                 String selectedItem = (String) event.getValue();  
-                form.getField("department2").setValueMap(departments.get(selectedItem));  
+                form2.getField("department").setValueMap(departments.get(selectedItem));  
             }  
         });  
+
+        final Map<String, String[]> departments2 = new HashMap<String, String[]>();  
+        departments2.put("Advertising", new String[]{"Подвариант1", "подвариант2", "подвариант3"}); 
+        
+        SelectItem departmentItem = new SelectItem();  
+        departmentItem.setName("department");  
+        departmentItem.setTitle("Department");  
+        departmentItem.setAddUnknownValues(false);  
+        SelectItem departmentItem3 = new SelectItem();  
+        departmentItem3.setName("health");  
+        departmentItem3.setTitle("Лекарства");  
+        departmentItem3.setAddUnknownValues(false);  
+        departmentItem.addChangeHandler(new ChangeHandler() {  
+            public void onChange(ChangeEvent event) {  
+                String selectedItem = (String) event.getValue();  
+                form2.getField("health").setValueMap(departments2.get(selectedItem));  
+            }  
+        });
+        form2.setItems(divisionItem, departmentItem, departmentItem3);  
   
-        SelectItem departmentItem2 = new SelectItem();  
-        departmentItem2.setName("department2");  
-        departmentItem2.setTitle("Department");  
-        departmentItem2.setAddUnknownValues(false);  
-  
-        form2.setItems(divisionItem2, departmentItem2);  
-  
-        form.draw();  
+        form2.draw();  
         tTab2.setPane(form2);
         Tab tTab3 = new Tab("Список");
+        final ListGrid countryGrid = new ListGrid();  
+        countryGrid.setWidth(500);  
+        countryGrid.setHeight(224);  
+        countryGrid.setShowAllRecords(true);  
+        countryGrid.setAlternateRecordStyles(true);  
+  
+        ListGridField nameField = new ListGridField("Name", "Name");  
+        ListGridField descriptionField = new ListGridField("description", "Description");
+        countryGrid.setFields(nameField, descriptionField);
+        countryGrid.setCanResizeFields(true);  
+        countryGrid.setData(CountrySampleData.getRecords());  
+        
+        tTab3.setPane(countryGrid);
+        
         Tab tTab4 = new Tab("Таблица");  
         Tab tTab5 = new Tab("Чекбоксы");
   
