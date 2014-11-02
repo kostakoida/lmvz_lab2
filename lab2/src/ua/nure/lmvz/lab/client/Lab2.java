@@ -3,6 +3,11 @@ package ua.nure.lmvz.lab.client;
 import java.util.HashMap;  
 import java.util.Map;  
   
+
+
+
+import com.smartgwt.client.widgets.layout.VStack; 
+import com.smartgwt.client.data.Record;
 import com.smartgwt.client.types.Side;  
 import com.smartgwt.client.widgets.layout.HLayout;  
 import com.smartgwt.client.widgets.layout.VLayout;  
@@ -16,9 +21,13 @@ import com.smartgwt.client.widgets.tree.TreeNode;
 import com.smartgwt.client.widgets.form.fields.events.ChangeEvent;  
 import com.smartgwt.client.widgets.form.fields.events.ChangeHandler;  
 import com.google.gwt.core.client.EntryPoint;  
+import com.google.gwt.user.client.ui.InlineLabel;
+import com.google.gwt.user.client.ui.RootPanel;
 import com.smartgwt.client.types.Alignment;  
 import com.smartgwt.client.types.ListGridFieldType;  
+import com.smartgwt.client.widgets.BaseWidget;
 import com.smartgwt.client.widgets.Canvas;  
+import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.form.DynamicForm;  
 import com.smartgwt.client.widgets.form.fields.CheckboxItem;  
 import com.smartgwt.client.widgets.form.fields.events.ChangeEvent;  
@@ -26,6 +35,14 @@ import com.smartgwt.client.widgets.form.fields.events.ChangeHandler;
 import com.smartgwt.client.widgets.grid.ListGrid;  
 import com.smartgwt.client.widgets.grid.ListGridField;  
 import com.smartgwt.client.widgets.layout.VLayout;  
+import com.smartgwt.client.widgets.grid.ListGridRecord;  
+import com.smartgwt.client.widgets.grid.events.CellClickEvent;  
+import com.smartgwt.client.widgets.grid.events.CellClickHandler;  
+import com.smartgwt.client.widgets.grid.events.CellContextClickEvent;  
+import com.smartgwt.client.widgets.grid.events.CellContextClickHandler;  
+import com.smartgwt.client.widgets.grid.events.CellDoubleClickEvent;  
+import com.smartgwt.client.widgets.grid.events.CellDoubleClickHandler;  
+
 import ua.nure.lmvz.lab.client.CountrySampleData;  
 
   
@@ -196,11 +213,13 @@ public class Lab2 implements EntryPoint {
                             		new DepertmentTreeNode("Теоверин (Theoverinum)"),
                             		new DepertmentTreeNode("Флунаризин (Flunarizin)"))));
     public void onModuleLoad() {  
-  
-        final TabSet topTabSet = new TabSet();  
-        topTabSet.setTabBarPosition(Side.TOP);  
-        topTabSet.setWidth(700); 
-        topTabSet.setHeight(400);
+    	//final DynamicForm form3 = new DynamicForm();  
+        
+    	final TabSet topTabSet = new TabSet();  
+        topTabSet.setWidth(800); 
+        topTabSet.setHeight(500);
+      //  form3.addChild(topTabSet);
+
         final DynamicForm form = new DynamicForm();  
         
   /*
@@ -214,19 +233,33 @@ public class Lab2 implements EntryPoint {
      */ 
         Tree tree = new Tree();  
         tree.setRoot(departmentRoot);  
-  
+        final Label label1 = new Label(); 
+        label1.setContents("");
+        label1.setWidth("100%");
+        label1.setWrap(true); 
         IPickTreeItem departmentItem1 = new IPickTreeItem();  
         departmentItem1.setTitle("Выберите лекарство");  
         departmentItem1.setValueField("name");  
         departmentItem1.setValueTree(tree);  
         Tab tTab1 = new Tab("Интерфейс №1: \"Дерево\"");
         form.setItems(departmentItem1);
-        tTab1.setPane(form);
+        departmentItem1.addChangeHandler(new ChangeHandler() {  
+            public void onChange(ChangeEvent event) {  
+                String selectedItem = (String) event.getValue();  
+                label1.setContents("Вы выбрали " + selectedItem + " Описание: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+            }  
+        });
+        label1.draw();
+        Canvas tabPane1 = new Canvas();  
+        tabPane1.addChild(form);
+        tabPane1.addChild(label1);
+        form.draw();  
+        tTab1.setPane(tabPane1);
         
         Tab tTab2 = new Tab("Интерфейс №2: \"Зависимые combobox\"");
         final DynamicForm form2 = new DynamicForm();  
-        form2.setWidth(500);  
-        form2.setNumCols(4);  
+        form2.setWidth("100%");  
+        form2.setNumCols(6);  
         
         final Map<String, String[]> departments = new HashMap<String, String[]>();  //коллекция связей для второго чекбокса первое-значние первого чекбокса-второе-коллекция элементов второго
         departments.put("Антисептические лекарственные средства", new String[]{"Галоиды, окислители и альдегиды", "Препараты кислот и щелочей", "Противомикробные и противопаразитарные лекарственные средства"});  
@@ -282,24 +315,65 @@ public class Lab2 implements EntryPoint {
                 form2.getField("health").setValueMap(departments2.get(selectedItem));  
             }  
         });
-        form2.setItems(divisionItem, departmentItem, departmentItem3);  
-  
+        final Label label = new Label(); 
+        label.setContents("");
+        label.setWidth("100%");
+        label.setWrap(true);  
+        departmentItem3.addChangeHandler(new ChangeHandler() {  
+            public void onChange(ChangeEvent event) {  
+                String selectedItem = (String) event.getValue();  
+                
+                label.setContents("Вы выбрали " + selectedItem + " Описание: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+            }  
+        });
+        form2.setItems(divisionItem, departmentItem, departmentItem3);
+        
+        label.draw();
+        Canvas tabPane2 = new Canvas();  
+        tabPane2.addChild(form2);
+        tabPane2.addChild(label);
         form2.draw();  
-        tTab2.setPane(form2);
+        tTab2.setPane(tabPane2);
         Tab tTab3 = new Tab("Интерфейс №3: \"Таблица\"");
+        final DynamicForm form3 = new DynamicForm();  
+        form3.setWidth("100%");  
+        form3.setHeight("90%");
         final ListGrid countryGrid = new ListGrid();  
-        countryGrid.setWidth(500);  
-        countryGrid.setHeight(224);  
+        countryGrid.setWidth("100%");  
+        countryGrid.setHeight("100%");  
+        
         countryGrid.setShowAllRecords(true);  
         countryGrid.setAlternateRecordStyles(true);  
-  
-        ListGridField nameField = new ListGridField("Name", "Название преперата");  
+        
+        countryGrid.setWrapCells(true);  
+        countryGrid.setFixedRecordHeights(false); 
+        final ListGridField nameField = new ListGridField("Name", "Название преперата");  
+        nameField.setWidth(200);
+        
         ListGridField descriptionField = new ListGridField("description", "Описание");
         countryGrid.setFields(nameField, descriptionField);
         countryGrid.setCanResizeFields(true);  
         countryGrid.setData(CountrySampleData.getRecords());  
-        
-        tTab3.setPane(countryGrid);
+
+        final InlineLabel label3 = new InlineLabel(); 
+        label3.setText("");
+        label3.setWidth("100%");
+        label3.setHeight("30px");
+        countryGrid.addCellClickHandler(new CellClickHandler() {  
+            public void onCellClick(CellClickEvent event) {  
+  
+            	ListGridRecord record =  event.getRecord();  
+                label3.setText("Вы выбрали " + record.getAttribute("Name") + " Описание: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+            }  
+        });
+        form3.addChild(countryGrid);
+        form3.draw();
+        VStack vStack = new VStack();
+        vStack.setWidth("100%"); 
+        vStack.addMember(form3);
+        vStack.addMember(label3);
+        vStack.setMembersMargin(10);
+        tTab3.setPane(vStack);
         
         Tab tTab4 = new Tab("РўР°Р±Р»РёС†Р°");  
         Tab tTab5 = new Tab("Р§РµРєР±РѕРєСЃС‹");
@@ -314,14 +388,16 @@ public class Lab2 implements EntryPoint {
         HLayout buttons = new HLayout();  
         buttons.setMembersMargin(15);  
   
-       
+        
         VLayout vLayout = new VLayout();  
         vLayout.setMembersMargin(15);  
         vLayout.addMember(topTabSet);  
         vLayout.addMember(buttons);  
         vLayout.setHeight("*");  
   
-        vLayout.draw();  
+        vLayout.draw(); 
+
+        RootPanel.get("center2").add(vLayout);
     }  
     public static class DepertmentTreeNode extends TreeNode {  
     	  

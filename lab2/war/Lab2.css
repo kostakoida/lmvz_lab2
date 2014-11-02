@@ -19,6 +19,10 @@ h1 {
 .gwt-DialogBox {
   width: 400px;
 }
+#labels
+{
+	margin-top: 10px;
+}
 
 .dialogVPanel {
   margin: 5px;
@@ -31,4 +35,8 @@ h1 {
 /** Set ids using widget.getElement().setId("idOfElement") */
 #closeButton {
   margin: 15px 6px 6px;
+}
+.center2
+{
+	align: center;
 }
