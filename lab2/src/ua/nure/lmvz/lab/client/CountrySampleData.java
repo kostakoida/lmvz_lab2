@@ -3,33 +3,162 @@ package ua.nure.lmvz.lab.client;
 import java.util.Date;  
 
 import com.smartgwt.client.widgets.grid.ListGridRecord;  
-  
+
 public class CountrySampleData {  
-  
-    private static ListGridRecord[] records;    
-        
-    public static ListGridRecord[] getRecords() {  
-        if (records == null) {  
-            records = getNewRecords();    
-        }    
-        return records;    
-    }    
-    
-    public static ListGridRecord createRecord(String Name, String description) {  
-        ListGridRecord record = new ListGridRecord(); 
-        record.setAttribute("Name", Name); 
-        record.setAttribute("description", description);    
-        return record;  
-    }  
-  
-    public static ListGridRecord[] getNewRecords() {  
-        return new ListGridRecord[]{  
-        		createRecord("Р›РµРєР°СЂСЃС‚РІРѕ 1","РћРїРёСЃР°РЅРёРµ1"),
-        		createRecord("Р›РµРєР°СЂСЃС‚РІРѕ 2","РћРїРёСЃР°РЅРёРµ2"),
-        		createRecord("Р›РµРєР°СЂСЃС‚РІРѕ 3","РћРїРёСЃР°РЅРёРµ3"),
-        		createRecord("Р›РµРєР°СЂСЃС‚РІРѕ 4","РћРїРёСЃР°РЅРёРµ 4"),
-        		createRecord("Р›РµРєР°СЂСЃС‚РІРѕ 5","РћРїРёСЃР°РЅРёРµ 5"),
-        		createRecord("Р›РµРєР°СЂСЃС‚РІРѕ 6","РћРїРёСЃР°РЅРёРµ 6"),
-        };  
-    }  
+
+private static ListGridRecord[] records;    
+	
+public static ListGridRecord[] getRecords() {  
+	if (records == null) {  
+		records = getNewRecords();    
+	}    
+	return records;    
+}    
+
+public static ListGridRecord createRecord(String Name, String description) {  
+	ListGridRecord record = new ListGridRecord(); 
+	record.setAttribute("Name", Name); 
+	record.setAttribute("description", description);    
+	return record;  
+}  
+
+public static ListGridRecord[] getNewRecords() {  
+	return new ListGridRecord[]{  
+			createRecord("Авамигран (Avamigran)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Адвантан (Advantan)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Адрианол (Adrianol)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Алтея корень (RadixAlthaeae)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Альгофин (Algofin)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Амарил (Amaryl)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Амикацин (Amikacinum)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Анавенол (Anavenol) ","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Аниса плоды (Fructus Anisi vulgaris)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Атеролип-вифор (Atherolip-vifor)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Аторис (Atoris)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Ацик (Acic)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("АЦЦ (ACC)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Бенатекс (Benatex)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Бепаск (Bepascum) ","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Бетадин (Betadine)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Бивацин (Bivacyn)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Бронхикум бальзам с эвкалиптовым маслом (Bronchicum balsam)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Бронхосан (Bronchosan)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Венарус (Venarus)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Викс Актив Синекс (Vicks Active Sinex)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Винканор (Vincanorum)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Гемфиброзил (GemflbrozU)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Гинепристон (Gynepriston)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Гинкор Гель (Ginkor gel)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Глибутид (Glibutidum)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Гормоны задней доли гипофиза)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Гормоны передней доли гипофиза)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Гормоны средней доли гипофиза)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Гропринозин (Groprinosin)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Грудной эликсир (Elixir pectoralis)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Дексокорт (Dexocort)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Делуфен (Delufen)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Депопровера (Depotprovera)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Диаформин (Diaformin)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Евра (Evra)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Идоксуридин (Idoxuridine)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Изофра (Isofra)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Иммунофлазид (Immunoflazidum)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Ингакамф (Inhacamf)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Инстенон (Instenon)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Капсиол (Capsiol)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Карбоцистеин (Carbocistein)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Керасал (Kerasal)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Комбинированные эстроген-гестагенсодержащие гормональные средства","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Контрацептин Т (Contraceptinum Т)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Кофол (сироп) (Kofol)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Кремген (Cremgenum)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Курантил (Curantil)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Лазолван (Lasolvan)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Лазорин (Lasorin)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Латрен (Latren)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Ливостор (Livostor)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Ловастатин (Lovastatin)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Лоринден (Lorinden)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Лоринден (Lorinden)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Малавит (Malavit)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Манинил (Мaninil)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Мексидол (Mexidolum)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Мексиприм (Mexiprim)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Ментоклар (Mentoklar)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Ментол (Mentholum)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Мерказолил (Mercazolil)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Метисазон (Methisazonum)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Миакальцик (Miacalcic)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Муколван (Mucolvanum)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Назонекс (Nasonex)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Натрия пара-аминосалицилат (Natriipara-aminoszlicylas)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Неоэфрацин (Neophracinum)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Новотирал (Novothyral)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Нокспрей (Noxprey)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Но-соль (No-sol)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Оксибрал (Oxybral)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Оксолиновая мазь (UnguenturnOxolini)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Олтар (Oltar)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Отривин (Otrivin)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Паратиреоидин (Parathyreoidinum)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Пасомицин (Pasomyciniun)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Пектолван Плющ (Pectolvan Hedera)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Перекиси водорода раствор (SolutioHydrogen!! peroxydidiluta)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Пертуссин (Pertussinum)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Пиразинамид (Pirazinamidum)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Постинор (Postinor)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Превалин (Prevalin)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Пульмолор (Pulmolor)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Ревалгин (Revalgin)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Ремантадин (Remantadinum)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Репарил (Reparil)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Рилизингфакторы регулирующие продукцию гормонов гипофиза","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Риностоп (Rinostop)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Сальброксол (Salbroxolum)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Септолете (Septolete)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Сибикорт (Siblcortum)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Симгал (Simgal)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Сиофор (Siofor)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Сироп алтейный (SirupusAlthaeae)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Скинорен (Skinoren)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Смесь для ингаляций (Mixtio pro inhalationibus)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Содерм (Soderm)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Солютизон (Soluthizonum)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Стрепсилс (Strepsils)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Стрептосалюзид (Streptosaluziduni)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Теоверин (Theoverinum)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Тиоацетазон (Thioacetazonum)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Тиреоидин (Thyreoidlnum)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Тирозол (Thyrozol)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Тобрамицин (Tobramycin)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Тобрекс (Tobrex)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Торвакард (Torvacard)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Трахисан","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Трацептин (Traceptinum)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Трийодтиронина гидрохлорид (Triiodthyroninihydrochloridum)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Трофодермин (Trofodermin)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Фамвир (Famvir)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Фарматекс (Pharmatex)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Фенофибрат (Phenofibrate)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Фиалки трава (Herba Violi)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Флавамед (Flavamed)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Флебодиа (Phlebodia)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Флостерон (Flosteron)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Флунаризин (Flunarizin)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Халиксол (Halixol)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Хлорпропамид (Chlorpropamidum)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Холестирамин (Cholestyraminum)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Целестодерм В (Celestoderm V)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Эвкабал (Eucabal)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Эвказолин (Eucazolin)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Эвкалипта лист (Folium Eucalyti)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Элоком (Elocom)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Эпервудин (Epervudine)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Эсcавен Гель","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Эскапел (Escapelle)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Эскувит (Eskuvit)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Этамбутол (Ethambutolum)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."),
+			createRecord("Эутирокс (Euthirox)","Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.")
+			};  
+}  
 }  
