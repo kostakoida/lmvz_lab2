@@ -1,8 +1,13 @@
 package ua.nure.lmvz.lab.client;
 
 import java.util.HashMap;  
+import java.util.LinkedHashMap;
 import java.util.Map;  
   
+
+
+
+
 
 
 
@@ -15,6 +20,7 @@ import com.smartgwt.client.widgets.tab.Tab;
 import com.smartgwt.client.widgets.tab.TabSet;  
 import com.smartgwt.client.widgets.form.DynamicForm;  
 import com.smartgwt.client.widgets.form.fields.IPickTreeItem;  
+import com.smartgwt.client.widgets.form.fields.RadioGroupItem;
 import com.smartgwt.client.widgets.form.fields.SelectItem;
 import com.smartgwt.client.widgets.tree.Tree;  
 import com.smartgwt.client.widgets.tree.TreeNode;  
@@ -25,8 +31,11 @@ import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.smartgwt.client.types.Alignment;  
 import com.smartgwt.client.types.ListGridFieldType;  
+import com.smartgwt.client.util.BooleanCallback;
+import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.BaseWidget;
 import com.smartgwt.client.widgets.Canvas;  
+import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.form.DynamicForm;  
 import com.smartgwt.client.widgets.form.fields.CheckboxItem;  
@@ -42,6 +51,8 @@ import com.smartgwt.client.widgets.grid.events.CellContextClickEvent;
 import com.smartgwt.client.widgets.grid.events.CellContextClickHandler;  
 import com.smartgwt.client.widgets.grid.events.CellDoubleClickEvent;  
 import com.smartgwt.client.widgets.grid.events.CellDoubleClickHandler;  
+import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;  
+import com.smartgwt.client.widgets.form.fields.events.ChangedHandler; 
 
 import ua.nure.lmvz.lab.client.CountrySampleData;  
 
@@ -221,7 +232,7 @@ public class Lab2 implements EntryPoint {
       //  form3.addChild(topTabSet);
 
         final DynamicForm form = new DynamicForm();  
-        
+        form.setNumCols(2);
   /*
         SupplyCategoryXmlDS dataSource = SupplyCategoryXmlDS.getInstance();  
         IPickTreeItem categoryItem = new IPickTreeItem();  
@@ -259,8 +270,8 @@ public class Lab2 implements EntryPoint {
         Tab tTab2 = new Tab("Интерфейс №2: \"Зависимые combobox\"");
         final DynamicForm form2 = new DynamicForm();  
         form2.setWidth("100%");  
-        form2.setNumCols(6);  
-        
+        form2.setNumCols(4);
+        form2.setColWidths("200px", "100px");
         final Map<String, String[]> departments = new HashMap<String, String[]>();  //коллекция связей для второго чекбокса первое-значние первого чекбокса-второе-коллекция элементов второго
         departments.put("Антисептические лекарственные средства", new String[]{"Галоиды, окислители и альдегиды", "Препараты кислот и щелочей", "Противомикробные и противопаразитарные лекарственные средства"});  
         departments.put("Гормоны, их аналоги и антигормональные лекарственные средства", new String[]{"Гормоны гипофиза и их синтетические аналоги", "Гормоны коры надпочечников","Лекарственные средства, влияющие на функции щитовидной и околощитовидной желез","Пероральные противодиабетические лекарственные средства"});  
@@ -279,6 +290,7 @@ public class Lab2 implements EntryPoint {
                 form2.getField("department").setValueMap(departments.get(selectedItem));  
             }  
         });  
+        divisionItem.setWidth(300);
         final Map<String, String[]> departments2 = new HashMap<String, String[]>();  
         departments2.put("Галоиды, окислители и альдегиды", new String[]{"Бетадин (Betadine)","Капсиол (Capsiol)", "Керасал (Kerasal)",  "Перекиси водорода раствор (SolutioHydrogen!! peroxydidiluta)"}); 
         departments2.put("Препараты кислот и щелочей", new String[]{"Скинорен (Skinoren)"});
@@ -302,19 +314,23 @@ public class Lab2 implements EntryPoint {
         departments2.put("Лекарственные средства, улучшающие мозговое кровообращение", new String[]{"Авамигран (Avamigran)", "Винканор (Vincanorum)", "Инстенон (Instenon)", "Мексидол (Mexidolum)", "Оксибрал (Oxybral)", "Теоверин (Theoverinum)", "Флунаризин (Flunarizin)"});
         
         SelectItem departmentItem = new SelectItem(); //second checkbox 
+        departmentItem.setWidth(300);
         departmentItem.setName("department");  
         departmentItem.setTitle("Выберите подгруппу");  
         departmentItem.setAddUnknownValues(false);  
         SelectItem departmentItem3 = new SelectItem();  //third checkbox
         departmentItem3.setName("health");  
         departmentItem3.setTitle("Выберите препарат");  
-        departmentItem3.setAddUnknownValues(false);  
+        departmentItem3.setAddUnknownValues(false);
+        departmentItem3.setWidth(300);
+        departmentItem3.setRowSpan(2);
         departmentItem.addChangeHandler(new ChangeHandler() {  
             public void onChange(ChangeEvent event) {  
                 String selectedItem = (String) event.getValue();  
                 form2.getField("health").setValueMap(departments2.get(selectedItem));  
             }  
         });
+        //departmentItem3.setTitleColSpan(2);
         final Label label = new Label(); 
         label.setContents("");
         label.setWidth("100%");
@@ -329,9 +345,15 @@ public class Lab2 implements EntryPoint {
         form2.setItems(divisionItem, departmentItem, departmentItem3);
         
         label.draw();
+        VStack vStack2 = new VStack();
+        vStack2.setWidth("100%"); 
+        vStack2.addMember(form2);
+        vStack2.addMember(label);
+        vStack2.setMembersMargin(10);
+        tTab2.setPane(vStack2);
+        
         Canvas tabPane2 = new Canvas();  
-        tabPane2.addChild(form2);
-        tabPane2.addChild(label);
+        tabPane2.addChild(vStack2);
         form2.draw();  
         tTab2.setPane(tabPane2);
         Tab tTab3 = new Tab("Интерфейс №3: \"Таблица\"");
@@ -341,7 +363,8 @@ public class Lab2 implements EntryPoint {
         final ListGrid countryGrid = new ListGrid();  
         countryGrid.setWidth("100%");  
         countryGrid.setHeight("100%");  
-        
+        label.setStyleName("labels2");  
+        label1.setStyleName("labels2");
         countryGrid.setShowAllRecords(true);  
         countryGrid.setAlternateRecordStyles(true);  
         
@@ -375,7 +398,34 @@ public class Lab2 implements EntryPoint {
         vStack.setMembersMargin(10);
         tTab3.setPane(vStack);
         
-        Tab tTab4 = new Tab("РўР°Р±Р»РёС†Р°");  
+        label3.setStyleName("labels2");
+        Tab tTab4 = new Tab("Перегрузки формы");
+        LinkedHashMap<String, String> styleMap = new LinkedHashMap<String, String>();  
+        styleMap.put("exampleStyleOnline", "Online");  
+        styleMap.put("exampleStyleLegal", "Legal");  
+        styleMap.put("exampleStyleCode", "Code");  
+        styleMap.put("exampleStyleInformal", "Informal");  
+          
+        final RadioGroupItem style = new RadioGroupItem();  
+        style.setShowTitle(false);  
+        style.setValueMap(styleMap);  
+        style.setDefaultValue("exampleStyleLegal"); 
+        
+       
+        final DynamicForm controls = new DynamicForm();  
+        controls.setFields(style);  
+        IButton d = new IButton();
+        controls.addChild(d);
+        d.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
+        	public void onClick(com.smartgwt.client.widgets.events.ClickEvent event) {
+        		SC.ask("Вы уверены?", "Вы уверены, что хотите выбрать ? "+(String)style.getValue(), new BooleanCallback() {  
+                        public void execute(Boolean value) {  
+                            SC.say("Вы выбрали" + (String)style.getValue()); 
+                        }  
+                    }); 
+        	}
+        });
+        tTab4.setPane(controls);
         Tab tTab5 = new Tab("Р§РµРєР±РѕРєСЃС‹");
   
         topTabSet.addTab(tTab1);  
@@ -385,14 +435,11 @@ public class Lab2 implements EntryPoint {
         topTabSet.addTab(tTab5); 
   
        
-        HLayout buttons = new HLayout();  
-        buttons.setMembersMargin(15);  
   
         
         VLayout vLayout = new VLayout();  
         vLayout.setMembersMargin(15);  
         vLayout.addMember(topTabSet);  
-        vLayout.addMember(buttons);  
         vLayout.setHeight("*");  
   
         vLayout.draw(); 
