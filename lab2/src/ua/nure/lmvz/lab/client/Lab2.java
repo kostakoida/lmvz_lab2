@@ -313,12 +313,12 @@ public class Lab2 implements EntryPoint {
         departments2.put("Антисклеротические лекарственные средства", new String[]{"Атеролип-вифор (Atherolip-vifor)", "Аторис (Atoris)", "Гемфиброзил (GemflbrozU)", "Ливостор (Livostor)", "Ловастатин (Lovastatin)", "Ревалгин (Revalgin)", "Симгал (Simgal)", "Торвакард (Torvacard)", "Фенофибрат (Phenofibrate)", "Холестирамин (Cholestyraminum)"});
         departments2.put("Лекарственные средства, улучшающие мозговое кровообращение", new String[]{"Авамигран (Avamigran)", "Винканор (Vincanorum)", "Инстенон (Instenon)", "Мексидол (Mexidolum)", "Оксибрал (Oxybral)", "Теоверин (Theoverinum)", "Флунаризин (Flunarizin)"});
         
-        SelectItem departmentItem = new SelectItem(); //second checkbox 
+        SelectItem departmentItem = new SelectItem(); 
         departmentItem.setWidth(300);
         departmentItem.setName("department");  
         departmentItem.setTitle("Выберите подгруппу");  
         departmentItem.setAddUnknownValues(false);  
-        SelectItem departmentItem3 = new SelectItem();  //third checkbox
+        SelectItem departmentItem3 = new SelectItem();
         departmentItem3.setName("health");  
         departmentItem3.setTitle("Выберите препарат");  
         departmentItem3.setAddUnknownValues(false);
@@ -330,7 +330,6 @@ public class Lab2 implements EntryPoint {
                 form2.getField("health").setValueMap(departments2.get(selectedItem));  
             }  
         });
-        //departmentItem3.setTitleColSpan(2);
         final Label label = new Label(); 
         label.setContents("");
         label.setWidth("100%");
@@ -400,27 +399,34 @@ public class Lab2 implements EntryPoint {
         
         label3.setStyleName("labels2");
         Tab tTab4 = new Tab("Перегрузки формы");
-        LinkedHashMap<String, String> styleMap = new LinkedHashMap<String, String>();  
-        styleMap.put("exampleStyleOnline", "Online");  
-        styleMap.put("exampleStyleLegal", "Legal");  
-        styleMap.put("exampleStyleCode", "Code");  
-        styleMap.put("exampleStyleInformal", "Informal");  
-          
-        final RadioGroupItem style = new RadioGroupItem();  
-        style.setShowTitle(false);  
-        style.setValueMap(styleMap);  
-        style.setDefaultValue("exampleStyleLegal"); 
         
-       
+        LinkedHashMap<String, String> CategoriesMap = new LinkedHashMap<String, String>();  
+        CategoriesMap.put("antiseptic", "Антисептические лекарственные средства");  
+        CategoriesMap.put("hormones", "Гормоны, их аналоги и антигормональные лекарственные средства");  
+        CategoriesMap.put("drugs", "Лекарственные средства, применяемые для лечения бронхов и лёгких");  
+        CategoriesMap.put("contraceptives", "Противозачаточные лекарственные средства");  
+        CategoriesMap.put("antimicrobial", "Противомикробные и противопаразитарные лекарственные средства");  
+        CategoriesMap.put("cardiovascular", "Сердечно-сосудистые лекарственные средства"); 
+        
+        final RadioGroupItem CategoriesRad = new RadioGroupItem();  
+        CategoriesRad.setShowTitle(false);  
+        CategoriesRad.setValueMap(CategoriesMap);  
+        CategoriesRad.setDefaultValue("none"); 
+        CategoriesRad.setWidth(100);
+
         final DynamicForm controls = new DynamicForm();  
-        controls.setFields(style);  
+        controls.setFields(CategoriesRad);
+        
         IButton d = new IButton();
+        d.setTop(400); d.setLeft(200);
         controls.addChild(d);
+        d.setTitle("Выбрать");
         d.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
         	public void onClick(com.smartgwt.client.widgets.events.ClickEvent event) {
-        		SC.ask("Вы уверены?", "Вы уверены, что хотите выбрать ? "+(String)style.getValue(), new BooleanCallback() {  
-                        public void execute(Boolean value) {  
-                            SC.say("Вы выбрали" + (String)style.getValue()); 
+        		SC.ask("Вы уверены?", "Вы уверены, что хотите выбрать " + (String)CategoriesRad.getValue() + "?", new BooleanCallback() {  
+                        public void execute(Boolean value) {
+                        	if (value)
+                        		SC.say("Вы выбрали " + (String)CategoriesRad.getValue()); 
                         }  
                     }); 
         	}
