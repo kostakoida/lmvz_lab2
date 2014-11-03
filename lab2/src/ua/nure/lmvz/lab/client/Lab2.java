@@ -58,7 +58,8 @@ import ua.nure.lmvz.lab.client.CountrySampleData;
 
   
 public class Lab2 implements EntryPoint {  
-  
+	int field = 1;
+	String selectedItem = new String();
 	private static final TreeNode departmentRoot =  
             new DepertmentTreeNode("try",  
                     new DepertmentTreeNode("Антисептические лекарственные средства",  
@@ -400,55 +401,300 @@ public class Lab2 implements EntryPoint {
         label3.setStyleName("labels2");
         Tab tTab4 = new Tab("Перегрузки формы");
         
-        LinkedHashMap<String, String> CategoriesMap = new LinkedHashMap<String, String>();  
+        final LinkedHashMap<String, String> CategoriesMap = new LinkedHashMap<String, String>();  
         CategoriesMap.put("antiseptic", "Антисептические лекарственные средства");  
         CategoriesMap.put("hormones", "Гормоны, их аналоги и антигормональные лекарственные средства");  
         CategoriesMap.put("drugs", "Лекарственные средства, применяемые для лечения бронхов и лёгких");  
         CategoriesMap.put("contraceptives", "Противозачаточные лекарственные средства");  
         CategoriesMap.put("antimicrobial", "Противомикробные и противопаразитарные лекарственные средства");  
-        CategoriesMap.put("cardiovascular", "Сердечно-сосудистые лекарственные средства"); 
+        CategoriesMap.put("cardiovascular", "Сердечно-сосудистые лекарственные средства");      
+
+        final Map<String, LinkedHashMap> categories = new HashMap<String, LinkedHashMap>();  //коллекция связей для второго чекбокса первое-значние первого чекбокса-второе-коллекция элементов второго
+        LinkedHashMap<String, String> antiseptic = new LinkedHashMap<String, String>();  
+        antiseptic.put("1", "Галоиды, окислители и альдегиды");  
+        antiseptic.put("2", "Препараты кислот и щелочей");  
+        antiseptic.put("3", "Противомикробные и противопаразитарные лекарственные средства");  
+
+        LinkedHashMap<String, String> hormones = new LinkedHashMap<String, String>();  
+        hormones.put("4", "Гормоны гипофиза и их синтетические аналоги");  
+        hormones.put("5", "Гормоны коры надпочечников");  
+        hormones.put("6", "Лекарственные средства, влияющие на функции щитовидной и околощитовидной желез");  
+        hormones.put("7", "Пероральные противодиабетические лекарственные средства");  
         
+        LinkedHashMap<String, String> drugs = new LinkedHashMap<String, String>();  
+        drugs.put("8", "Лекарственные средства для лечения ринита");  
+        drugs.put("9", "Лекарственные средства, содержащие эфирные масла");  
+        drugs.put("10", "Муколитические лекарственные средства");  
+        drugs.put("11", "Отхаркивающие лекарственные средства");  
+
+        LinkedHashMap<String, String> contraceptives = new LinkedHashMap<String, String>();  
+        contraceptives.put("12", "Негормональные противозачаточные лекарственные средства");  
+        contraceptives.put("13", "Пероральные гормональные противозачаточные лекарственные средства");  
+        contraceptives.put("14", "Посткоитальные гормональные противозачаточные средства");  
+
+        LinkedHashMap<String, String> antimicrobial = new LinkedHashMap<String, String>();  
+        antimicrobial.put("15", "Антибиотики");  
+        antimicrobial.put("16", "Противовирусные лекарственные средства");  
+        antimicrobial.put("17", "Противотуберкулезные лекарственные средства");  
+
+        LinkedHashMap<String, String> cardiovascular = new LinkedHashMap<String, String>();  
+        cardiovascular.put("18", "Ангиопротекторные лекарственные средства");  
+        cardiovascular.put("19", "Антисклеротические лекарственные средства");  
+        cardiovascular.put("20", "Лекарственные средства, улучшающие мозговое кровообращение");  
         
+        categories.put("antiseptic", antiseptic);  
+        categories.put("hormones", hormones);
+        categories.put("drugs", drugs);
+        categories.put("contraceptives", contraceptives);
+        categories.put("antimicrobial", antimicrobial);
+        categories.put("cardiovascular", cardiovascular);
+        
+        final Map<String, LinkedHashMap> medecines = new HashMap<String, LinkedHashMap>();  //коллекция связей для второго чекбокса первое-значние первого чекбокса-второе-коллекция элементов второго
+        LinkedHashMap<String, String> med1 = new LinkedHashMap<String, String>();  
+        med1.put("1", "Бетадин (Betadine)");  
+        med1.put("2", "Капсиол (Capsiol)");  
+        med1.put("3", "Керасал (Kerasal)");  
+        med1.put("4", "Перекиси водорода раствор (SolutioHydrogen!! peroxydidiluta)");
+
+        LinkedHashMap<String, String> med2 = new LinkedHashMap<String, String>();  
+        med2.put("1", "Скинорен (Skinoren)");
+
+        LinkedHashMap<String, String> med3 = new LinkedHashMap<String, String>();  
+        med3.put("1", "Альгофин (Algofin)");  
+        med3.put("2", "Малавит (Malavit)");  
+        med3.put("3", "Стрепсилс (Strepsils)");  
+        med3.put("4", "Трахисан"); 
+        
+        LinkedHashMap<String, String> med4 = new LinkedHashMap<String, String>();  
+        med4.put("1", "Гормоны задней доли гипофиза");  
+        med4.put("2", "Гормоны передней доли гипофиза");  
+        med4.put("3", "Гормоны средней доли гипофиза");  
+        med4.put("4", "Рилизингфакторы, регулирующие продукцию гормонов гипофиза");  
+
+        LinkedHashMap<String, String> med5 = new LinkedHashMap<String, String>();  
+        med5.put("1", "Адвантан (Advantan)");  
+        med5.put("2", "Дексокорт (Dexocort)");  
+        med5.put("3", "Лоринден (Lorinden)");  
+        med5.put("4", "Назонекс (Nasonex)"); 
+        med5.put("5", "Сибикорт (Siblcortum)");  
+        med5.put("6", "Содерм (Soderm)");  
+        med5.put("7", "Флостерон (Flosteron)");  
+        med5.put("8", "Целестодерм В (Celestoderm V)"); 
+        med5.put("9", "Элоком (Elocom)");
+        
+        LinkedHashMap<String, String> med6 = new LinkedHashMap<String, String>();  
+        med6.put("1", "Мерказолил (Mercazolil)");  
+        med6.put("2", "Миакальцик (Miacalcic)");  
+        med6.put("3", "Новотирал (Novothyral)");  
+        med6.put("4", "Паратиреоидин (Parathyreoidinum)");  
+        med6.put("5", "Тиреоидин (Thyreoidlnum)");  
+        med6.put("6", "Тирозол (Thyrozol)");  
+        med6.put("7", "Трийодтиронина гидрохлорид (Triiodthyroninihydrochloridum)");  
+        med6.put("8", "Эутирокс (Euthirox)");  
+
+        LinkedHashMap<String, String> med7 = new LinkedHashMap<String, String>();  
+        med7.put("1", "Амарил (Amaryl)");  
+        med7.put("2", "Глибутид (Glibutidum)");  
+        med7.put("3", "Диаформин (Diaformin)");  
+        med7.put("4", "Манинил (Мaninil)");  
+        med7.put("5", "Олтар (Oltar)");  
+        med7.put("6", "Сиофор (Siofor)");  
+        med7.put("7", "Хлорпропамид (Chlorpropamidum)");  
+
+        LinkedHashMap<String, String> med8 = new LinkedHashMap<String, String>();  
+        med8.put("1", "Адрианол (Adrianol)");  
+        med8.put("2", "Викс Актив Синекс (Vicks Active Sinex)");  
+        med8.put("3", "Делуфен (Delufen)");  
+        med8.put("4", "Лазорин (Lasorin)");  
+        med8.put("5", "Но-соль (No-sol)");  
+        med8.put("6", "Нокспрей (Noxprey)");  
+        med8.put("7", "Отривин (Otrivin)");  
+        med8.put("8", "Превалин (Prevalin)");  
+        med8.put("9", "Риностоп (Rinostop)"); 
+        med8.put("10", "Эвказолин (Eucazolin)"); 
+        
+        LinkedHashMap<String, String> med9 = new LinkedHashMap<String, String>();  
+        med9.put("1", "Бронхикум бальзам с эвкалиптовым маслом (Bronchicum balsam)");  
+        med9.put("2", "Ингакамф (Inhacamf)");  
+        med9.put("3", "Лоринден (Lorinden)");  
+        med9.put("4", "Ментоклар (Mentoklar)");  
+        med9.put("5", "Ментол (Mentholum)");  
+        med9.put("6", "Септолете (Septolete)");  
+        med9.put("7", "Смесь для ингаляций (Mixtio pro inhalationibus)");  
+        med9.put("8", "Эвкабал (Eucabal)");  
+        med9.put("9", "Эвкалипта лист (Folium Eucalyti)");  
+
+        LinkedHashMap<String, String> med10 = new LinkedHashMap<String, String>();  
+        med10.put("1", "АЦЦ (ACC), ");  
+        med10.put("2", "Бронхосан (Bronchosan)");  
+        med10.put("3", "Карбоцистеин (Carbocistein)");  
+        med10.put("4", "Лазолван (Lasolvan)");  
+        med10.put("5", "Муколван (Mucolvanum)");  
+        med10.put("6", "Пектолван Плющ (Pectolvan Hedera)");  
+        med10.put("7", "Сальброксол (Salbroxolum)");  
+        med10.put("8", "Флавамед (Flavamed)");  
+        med10.put("9", "Халиксол (Halixol)");  
+       
+        LinkedHashMap<String, String> med11 = new LinkedHashMap<String, String>();  
+        med11.put("1", "Алтея корень (RadixAlthaeae)");  
+        med11.put("2", "Аниса плоды (Fructus Anisi vulgaris)");  
+        med11.put("3", "Грудной эликсир (Elixir pectoralis)");  
+        med11.put("4", "Кофол (сироп) (Kofol)");  
+        med11.put("5", "Пертуссин (Pertussinum)");  
+        med11.put("6", "Пульмолор (Pulmolor)"); 
+        med11.put("7", "Сироп алтейный (SirupusAlthaeae)");  
+        med11.put("8", "Фиалки трава (Herba Violi)"); 
+       
+        LinkedHashMap<String, String> med12 = new LinkedHashMap<String, String>();  
+        med12.put("1", "Бенатекс (Benatex)");  
+        med12.put("2", "Контрацептин Т (Contraceptinum Т)");  
+        med12.put("3", "Трацептин (Traceptinum)");  
+        med12.put("4", "Фарматекс (Pharmatex)");
+        
+        LinkedHashMap<String, String> med13 = new LinkedHashMap<String, String>();  
+        med13.put("1", "Депопровера (Depotprovera)");  
+        med13.put("2", "Евра (Evra)");  
+        med13.put("3", "Комбинированные эстроген-гестагенсодержащие гормональные средства  ");  
+
+        LinkedHashMap<String, String> med14 = new LinkedHashMap<String, String>();  
+        med14.put("1", "Гинепристон (Gynepriston)");  
+        med14.put("2", "Постинор (Postinor)");  
+        med14.put("3", "Эскапел (Escapelle)");  
+
+        LinkedHashMap<String, String> med15 = new LinkedHashMap<String, String>();  
+        med15.put("1", "Амикацин (Amikacinum)");  
+        med15.put("2", "Бивацин (Bivacyn)");  
+        med15.put("3", "Изофра (Isofra)");  
+        med15.put("4", "Кремген (Cremgenum)");  
+        med15.put("5", "Неоэфрацин (Neophracinum)");  
+        med15.put("6", "Пасомицин (Pasomyciniun)");  
+        med15.put("7", "Стрептосалюзид (Streptosaluziduni)");  
+        med15.put("8", "Тобрамицин (Tobramycin)");  
+        med15.put("9", "Тобрекс (Tobrex)");  
+        med15.put("10", "Трофодермин (Trofodermin)");  
+
+        LinkedHashMap<String, String> med16 = new LinkedHashMap<String, String>();  
+        med16.put("1", "Ацик (Acic)");  
+        med16.put("2", "Гропринозин (Groprinosin)");  
+        med16.put("3", "Идоксуридин (Idoxuridine)");  
+        med16.put("4", "Иммунофлазид (Immunoflazidum)");  
+        med16.put("5", "Метисазон (Methisazonum)");  
+        med16.put("6", "Оксолиновая мазь (UnguenturnOxolini)");  
+        med16.put("7", "Ремантадин (Remantadinum)");  
+        med16.put("8", "Фамвир (Famvir)");  
+        med16.put("9", "Эпервудин (Epervudine)");  
+
+        LinkedHashMap<String, String> med17 = new LinkedHashMap<String, String>();  
+        med17.put("1", "Бепаск (Bepascum)");  
+        med17.put("2", "Натрия пара-аминосалицилат (Natriipara-aminoszlicylas)");  
+        med17.put("3", "Пиразинамид (Pirazinamidum)");  
+        med17.put("4", "Солютизон (Soluthizonum)");  
+        med17.put("5", "Тиоацетазон (Thioacetazonum)");  
+        med17.put("6", "Этамбутол (Ethambutolum)"); 
+
+        LinkedHashMap<String, String> med18 = new LinkedHashMap<String, String>();  
+        med18.put("1", "Анавенол (Anavenol)");  
+        med18.put("2", "Венарус (Venarus)");  
+        med18.put("3", "Гинкор Гель (Ginkor gel)");  
+        med18.put("4", "Курантил (Curantil)");  
+        med18.put("5", "Латрен (Latren)");  
+        med18.put("6", "Мексиприм (Mexiprim)");  
+        med18.put("7", "Репарил (Reparil)");  
+        med18.put("8", "Флебодиа (Phlebodia)");
+        med18.put("9", "Эсcавен Гель");
+        med18.put("10", "Эскувит (Eskuvit)");
+        
+        LinkedHashMap<String, String> med19 = new LinkedHashMap<String, String>();  
+        med19.put("1", "Атеролип-вифор (Atherolip-vifor)");  
+        med19.put("2", "Аторис (Atoris)");  
+        med19.put("3", "Гемфиброзил (GemflbrozU)");  
+        med19.put("4", "Ливостор (Livostor)");  
+        med19.put("5", "Ловастатин (Lovastatin)");  
+        med19.put("6", "Ревалгин (Revalgin)");  
+        med19.put("7", "Симгал (Simgal)");  
+        med19.put("8", "Торвакард (Torvacard)");  
+        med19.put("9", "Фенофибрат (Phenofibrate)");  
+        med19.put("10", "Холестирамин (Cholestyraminum)");  
+
+        LinkedHashMap<String, String> med20 = new LinkedHashMap<String, String>();  
+        med20.put("1", "Авамигран (Avamigran)");  
+        med20.put("2", "Винканор (Vincanorum)");  
+        med20.put("3", "Инстенон (Instenon)");  
+        med20.put("4", "Мексидол (Mexidolum)");  
+        med20.put("5", "Оксибрал (Oxybral)");  
+        med20.put("6", "Теоверин (Theoverinum)");  
+        med20.put("7", "Флунаризин (Flunarizin)");  
+        
+        medecines.put("1",med1);
+        medecines.put("2",med2);
+        medecines.put("3",med3);
+        medecines.put("4",med4);
+        medecines.put("5",med5);
+        medecines.put("6",med6);
+        medecines.put("7",med7);
+        medecines.put("8",med8);
+        medecines.put("9",med9);
+        medecines.put("10",med10);
+        medecines.put("11",med11);
+        medecines.put("12",med12);
+        medecines.put("13",med13);
+        medecines.put("14",med14);
+        medecines.put("15",med15);
+        medecines.put("16",med16);
+        medecines.put("17",med17);
+        medecines.put("18",med18);
+        medecines.put("19",med19);
+        medecines.put("20",med20);
         
         final RadioGroupItem CategoriesRad = new RadioGroupItem();  
         CategoriesRad.setShowTitle(false);  
         CategoriesRad.setValueMap(CategoriesMap);  
         CategoriesRad.setDefaultValue("none"); 
         CategoriesRad.setWidth(100);
+        
+        final RadioGroupItem CatRad = new RadioGroupItem();  
+        CatRad.setShowTitle(false);  
+        //CatRad.setValueMap(CategoriesMap);  
+        CatRad.setDefaultValue("none"); 
        
         final DynamicForm controls = new DynamicForm();  
         controls.setFields(CategoriesRad);
         
-        IButton d = new IButton();
-        d.setTop(400); d.setLeft(200);
-        controls.addChild(d);
-        d.setTitle("Выбрать");
+        /*final Label label4 = new Label(); 
+        label4.setContents("");
+        label4.setWidth("100%");
+        label4.setHeight("30px");
+        label4.setStyleName("labels2");*/
         
-        final Map<String, LinkedHashMap> categories = new HashMap<String, LinkedHashMap>();  //коллекция связей для второго чекбокса первое-значние первого чекбокса-второе-коллекция элементов второго
-        LinkedHashMap<String, String> CategoriesMap2 = new LinkedHashMap<String, String>();  
-        CategoriesMap2.put("21", "А1");  
-        CategoriesMap2.put("23", "Л2");  
-        CategoriesMap2.put("25", "П3");  
-        CategoriesMap2.put("26", "П4");  
-        CategoriesMap2.put("272", "С5"); 
-        
-        categories.put("antiseptic", CategoriesMap2);  
-        //categories.put("Гормоны, их аналоги и антигормональные лекарственные средства", new String[]{"Гормоны гипофиза и их синтетические аналоги", "Гормоны коры надпочечников","Лекарственные средства, влияющие на функции щитовидной и околощитовидной желез","Пероральные противодиабетические лекарственные средства"});  
-        //categories.put("Лекарственные средства, применяемые для лечения бронхов и лёгких", new String[]{"Лекарственные средства для лечения ринита","Лекарственные средства, содержащие эфирные масла","Муколитические лекарственные средства","Отхаркивающие лекарственные средства"});  
-        //categories.put("Противозачаточные лекарственные средства", new String[]{"Негормональные противозачаточные лекарственные средства", "Пероральные гормональные противозачаточные лекарственные средства", "Посткоитальные гормональные противозачаточные средства"});
-        //categories.put("Противомикробные и противопаразитарные лекарственные средства", new String[]{"Антибиотики", "Противовирусные лекарственные средства", "Противотуберкулезные лекарственные средства"}); 
-        //categories.put("Сердечно-сосудистые лекарственные средства", new String[]{"Ангиопротекторные лекарственные средства", "Антисклеротические лекарственные средства","Лекарственные средства, улучшающие мозговое кровообращение"}); 
-        
-      //  SelectItem divisionItem = new SelectItem();  
-       
-        
-        
-        d.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
+        final IButton next = new IButton();
+        next.setTop(400); next.setLeft(350);
+        controls.addChild(next);
+        next.setTitle("Выбрать");
+        next.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
         	public void onClick(com.smartgwt.client.widgets.events.ClickEvent event) {
-        		String selectedItem = (String) CategoriesRad.getValue();  
-        		CategoriesRad.setValueMap(categories.get(selectedItem)); 
+        		selectedItem = (String) CategoriesRad.getValue(); 
+        		if(field == 1) {CategoriesRad.setValueMap(categories.get(selectedItem)); field ++;}
+        		else if(field == 2){CategoriesRad.setValueMap(medecines.get(selectedItem)); field ++;}
+        		else if(field == 3){
+                    //label4.setContents("Вы выбрали " + medecines.get(selectedItem) + " Описание: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        		}
         	}
         });
+        final IButton previous = new IButton();
+        previous.setTop(400); previous.setLeft(200);
+        controls.addChild(previous);
+        previous.setTitle("Назад");
+        previous.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
+        	public void onClick(com.smartgwt.client.widgets.events.ClickEvent event) {
+        		//String selectedItem = (String) CategoriesRad.getValue(); 
+
+        		if(field == 2){CategoriesRad.setValueMap(CategoriesMap); field --;}
+        		else if(field == 3){CategoriesRad.setValueMap(categories.get(selectedItem)); field --;}
+        	}
+        }); 
+        
+        
+        
         tTab4.setPane(controls);
         Tab tTab5 = new Tab("Р§РµРєР±РѕРєСЃС‹");
   
