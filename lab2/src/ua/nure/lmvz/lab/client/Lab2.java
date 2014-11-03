@@ -408,12 +408,14 @@ public class Lab2 implements EntryPoint {
         CategoriesMap.put("antimicrobial", "Противомикробные и противопаразитарные лекарственные средства");  
         CategoriesMap.put("cardiovascular", "Сердечно-сосудистые лекарственные средства"); 
         
+        
+        
         final RadioGroupItem CategoriesRad = new RadioGroupItem();  
         CategoriesRad.setShowTitle(false);  
         CategoriesRad.setValueMap(CategoriesMap);  
         CategoriesRad.setDefaultValue("none"); 
         CategoriesRad.setWidth(100);
-
+       
         final DynamicForm controls = new DynamicForm();  
         controls.setFields(CategoriesRad);
         
@@ -421,14 +423,30 @@ public class Lab2 implements EntryPoint {
         d.setTop(400); d.setLeft(200);
         controls.addChild(d);
         d.setTitle("Выбрать");
+        
+        final Map<String, LinkedHashMap> categories = new HashMap<String, LinkedHashMap>();  //коллекция связей для второго чекбокса первое-значние первого чекбокса-второе-коллекция элементов второго
+        LinkedHashMap<String, String> CategoriesMap2 = new LinkedHashMap<String, String>();  
+        CategoriesMap2.put("21", "А1");  
+        CategoriesMap2.put("23", "Л2");  
+        CategoriesMap2.put("25", "П3");  
+        CategoriesMap2.put("26", "П4");  
+        CategoriesMap2.put("272", "С5"); 
+        
+        categories.put("antiseptic", CategoriesMap2);  
+        //categories.put("Гормоны, их аналоги и антигормональные лекарственные средства", new String[]{"Гормоны гипофиза и их синтетические аналоги", "Гормоны коры надпочечников","Лекарственные средства, влияющие на функции щитовидной и околощитовидной желез","Пероральные противодиабетические лекарственные средства"});  
+        //categories.put("Лекарственные средства, применяемые для лечения бронхов и лёгких", new String[]{"Лекарственные средства для лечения ринита","Лекарственные средства, содержащие эфирные масла","Муколитические лекарственные средства","Отхаркивающие лекарственные средства"});  
+        //categories.put("Противозачаточные лекарственные средства", new String[]{"Негормональные противозачаточные лекарственные средства", "Пероральные гормональные противозачаточные лекарственные средства", "Посткоитальные гормональные противозачаточные средства"});
+        //categories.put("Противомикробные и противопаразитарные лекарственные средства", new String[]{"Антибиотики", "Противовирусные лекарственные средства", "Противотуберкулезные лекарственные средства"}); 
+        //categories.put("Сердечно-сосудистые лекарственные средства", new String[]{"Ангиопротекторные лекарственные средства", "Антисклеротические лекарственные средства","Лекарственные средства, улучшающие мозговое кровообращение"}); 
+        
+      //  SelectItem divisionItem = new SelectItem();  
+       
+        
+        
         d.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
         	public void onClick(com.smartgwt.client.widgets.events.ClickEvent event) {
-        		SC.ask("Вы уверены?", "Вы уверены, что хотите выбрать " + (String)CategoriesRad.getValue() + "?", new BooleanCallback() {  
-                        public void execute(Boolean value) {
-                        	if (value)
-                        		SC.say("Вы выбрали " + (String)CategoriesRad.getValue()); 
-                        }  
-                    }); 
+        		String selectedItem = (String) CategoriesRad.getValue();  
+        		CategoriesRad.setValueMap(categories.get(selectedItem)); 
         	}
         });
         tTab4.setPane(controls);
