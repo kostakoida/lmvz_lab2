@@ -60,6 +60,8 @@ import ua.nure.lmvz.lab.client.CountrySampleData;
 public class Lab2 implements EntryPoint {  
 	int field = 1;
 	String selectedItem = new String();
+
+	String step2 = new String();
 	private static final TreeNode departmentRoot =  
             new DepertmentTreeNode("try",  
                     new DepertmentTreeNode("Антисептические лекарственные средства",  
@@ -246,7 +248,7 @@ public class Lab2 implements EntryPoint {
         Tree tree = new Tree();  
         tree.setRoot(departmentRoot);  
         final Label label1 = new Label(); 
-        label1.setContents("");
+        label1.setContents(" ");
         label1.setWidth("100%");
         label1.setWrap(true); 
         IPickTreeItem departmentItem1 = new IPickTreeItem();  
@@ -665,7 +667,7 @@ public class Lab2 implements EntryPoint {
         label4.setWidth("100%");
         label4.setHeight("30px");
         label4.setStyleName("labels2");*/
-        
+        final Label label5 = new Label();
         final IButton next = new IButton();
         next.setTop(400); next.setLeft(350);
         controls.addChild(next);
@@ -673,7 +675,10 @@ public class Lab2 implements EntryPoint {
         next.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
         	public void onClick(com.smartgwt.client.widgets.events.ClickEvent event) {
         		selectedItem = (String) CategoriesRad.getValue(); 
-        		if(field == 1) {CategoriesRad.setValueMap(categories.get(selectedItem)); field ++;}
+        		
+        		if(field == 1) {CategoriesRad.setValueMap(categories.get(selectedItem)); field ++;
+        		step2 = selectedItem;
+        		}
         		else if(field == 2){CategoriesRad.setValueMap(medecines.get(selectedItem)); field ++;}
         		else if(field == 3){
                     //label4.setContents("Вы выбрали " + medecines.get(selectedItem) + " Описание: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
@@ -689,7 +694,7 @@ public class Lab2 implements EntryPoint {
         		//String selectedItem = (String) CategoriesRad.getValue(); 
 
         		if(field == 2){CategoriesRad.setValueMap(CategoriesMap); field --;}
-        		else if(field == 3){CategoriesRad.setValueMap(categories.get(selectedItem)); field --;}
+        		else if(field == 3){CategoriesRad.setValueMap(categories.get(step2)); field --;}
         	}
         }); 
         
