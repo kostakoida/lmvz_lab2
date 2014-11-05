@@ -413,11 +413,10 @@ public class Lab2 implements EntryPoint {
         
         final DynamicForm form41 = new DynamicForm();  
         form41.setWidth("100%");
-
         form41.hide();
+        
         final DynamicForm form42 = new DynamicForm();  
         form42.setWidth("100%");
-
         form42.hide();
         
         final Label label4 = new Label(); 
@@ -689,7 +688,6 @@ public class Lab2 implements EntryPoint {
           
         form4.setFields(CategoriesRad);
         
-        
         final IButton next = new IButton();
         next.setTop(300); next.setLeft(350);
         next.setTitle("Выбрать");
@@ -724,7 +722,6 @@ public class Lab2 implements EntryPoint {
         
         final IButton previous = new IButton();
         previous.setTop(300); previous.setLeft(200);
-        //form4.addChild(previous);
         previous.setTitle("Назад");
         previous.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
         	public void onClick(com.smartgwt.client.widgets.events.ClickEvent event) {
@@ -756,7 +753,6 @@ public class Lab2 implements EntryPoint {
         vStack4.addMember(label4);
         vStack4.setMembersMargin(5);
         tTab4.setPane(vStack4);
-        //tTab4.setPane(hStack4);
         
         Canvas tabPane4 = new Canvas();  
         tabPane4.addChild(vStack4);
