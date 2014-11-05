@@ -675,42 +675,59 @@ public class Lab2 implements EntryPoint {
         medecines.put("Лекарственные средства, улучшающие мозговое кровообращение",med20);
         
         final RadioGroupItem CategoriesRad = new RadioGroupItem();  
-        CategoriesRad.setShowTitle(false);  
+        
+        CategoriesRad.setShowTitle(false); 
         CategoriesRad.setValueMap(CategoriesMap);  
         CategoriesRad.setDefaultValue(step1); 
-        CategoriesRad.setWidth(500);
-
+        CategoriesRad.setPickerIconStyle("pickers");
         final RadioGroupItem categRad = new RadioGroupItem();  
         categRad.setShowTitle(false);   
         
-        final RadioGroupItem medecRad = new RadioGroupItem();  
+        final RadioGroupItem medecRad = new RadioGroupItem(); 
+        medecRad.setPickerIconStyle("pickers");
         medecRad.setShowTitle(false);   
-          
+        form4.setColWidths("1px", "400px");
+        form4.setWrapItemTitles(false);
+        form4.setWidth(800);form41.setWidth(800);form42.setWidth(800);
+        form41.setColWidths("1px", "400px");
+        form42.setColWidths("1px", "400px");
         form4.setFields(CategoriesRad);
+        label41.setMargin(0);
         
+        label41.setStyleName("labels2");
         final IButton next = new IButton();
         next.setTop(300); next.setLeft(350);
         next.setTitle("Выбрать");
+
+        final IButton previous = new IButton();
         next.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
         	public void onClick(com.smartgwt.client.widgets.events.ClickEvent event) {
         		
         		if (form4.isVisible()){
         			selectedItem = (String) CategoriesRad.getValue();
+        			if(selectedItem=="" || selectedItem==null)
+        				SC.say("Shit");
+        			else{
+        				previous.show();
         			form4.hide();
         			form41.show();
         			categRad.setValueMap(categories.get(selectedItem));
         			form41.setFields(categRad);
-        			
         			label41.setContents(selectedItem);
+        			}
         		}
         		else if(form41.isVisible()) {
         			selectedItem = (String) categRad.getValue();
+        			if(selectedItem=="" || selectedItem==null)
+        				SC.say("Shit");
+        			else{
         			form41.hide();
         			form42.show();
         			medecRad.setValueMap(medecines.get(selectedItem));
         			form42.setFields(medecRad);
         			label41.setContents(null);
         			label41.setContents(selectedItem);
+        			}
     			}
         		else if(form42.isVisible()){
         			label4.show();
@@ -719,8 +736,7 @@ public class Lab2 implements EntryPoint {
         		
         	}
         });
-        
-        final IButton previous = new IButton();
+        previous.hide();
         previous.setTop(300); previous.setLeft(200);
         previous.setTitle("Назад");
         previous.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
@@ -729,6 +745,7 @@ public class Lab2 implements EntryPoint {
         			form41.hide();
         			form4.show();
         			label41.setContents("");
+        			previous.hide();
     			}
         		else if(form42.isVisible()){
         			form42.hide();
@@ -738,7 +755,11 @@ public class Lab2 implements EntryPoint {
         	}
         }); 
         label4.setStyleName("labels2");
-        label41.setStyleName("labels2");
+        label4.setWrap(true);
+        label4.setHeight(30);
+        label4.setMargin(5);
+        label4.setHeight(30);
+        label41.setHeight(15);
         label4.draw();
         label41.draw();
         VStack vStack4 = new VStack();
@@ -748,7 +769,6 @@ public class Lab2 implements EntryPoint {
         vStack4.addMember(form4);vStack4.addMember(form41);vStack4.addMember(form42);
         hStack4.addMember(next);
         hStack4.addMember(previous);
-        hStack4.setMembersMargin(5);
         vStack4.addMember(hStack4);
         vStack4.addMember(label4);
         vStack4.setMembersMargin(5);
