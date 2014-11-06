@@ -8,6 +8,9 @@ h1 {
   color: #777777;
   text-align: center;
 }
+.tabSetContainer{
+	background-color: transparent !important;
+}
 .labels2
 {
 	color: #666666;

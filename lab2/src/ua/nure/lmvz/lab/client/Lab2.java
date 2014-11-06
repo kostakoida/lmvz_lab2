@@ -1,62 +1,34 @@
 package ua.nure.lmvz.lab.client;
 
-import java.util.HashMap;  
+import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Map;  
-  
+import java.util.Map;
 
-
-
-
-
-
-
-
-import com.smartgwt.client.widgets.layout.VStack; 
-import com.smartgwt.client.data.Record;
-import com.smartgwt.client.types.Side;  
-import com.smartgwt.client.widgets.layout.HLayout;  
-import com.smartgwt.client.widgets.layout.HStack;
-import com.smartgwt.client.widgets.layout.VLayout;  
-import com.smartgwt.client.widgets.tab.Tab;  
-import com.smartgwt.client.widgets.tab.TabSet;  
-import com.smartgwt.client.widgets.form.DynamicForm;  
-import com.smartgwt.client.widgets.form.fields.IPickTreeItem;  
-import com.smartgwt.client.widgets.form.fields.RadioGroupItem;
-import com.smartgwt.client.widgets.form.fields.SelectItem;
-import com.smartgwt.client.widgets.tree.Tree;  
-import com.smartgwt.client.widgets.tree.TreeNode;  
-import com.smartgwt.client.widgets.form.fields.events.ChangeEvent;  
-import com.smartgwt.client.widgets.form.fields.events.ChangeHandler;  
-import com.google.gwt.core.client.EntryPoint;  
+import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.smartgwt.client.types.Alignment;  
-import com.smartgwt.client.types.ListGridFieldType;  
-import com.smartgwt.client.util.BooleanCallback;
 import com.smartgwt.client.util.SC;
-import com.smartgwt.client.widgets.BaseWidget;
-import com.smartgwt.client.widgets.Canvas;  
+import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
 import com.smartgwt.client.widgets.Label;
-import com.smartgwt.client.widgets.form.DynamicForm;  
-import com.smartgwt.client.widgets.form.fields.CheckboxItem;  
-import com.smartgwt.client.widgets.form.fields.events.ChangeEvent;  
-import com.smartgwt.client.widgets.form.fields.events.ChangeHandler;  
-import com.smartgwt.client.widgets.grid.ListGrid;  
-import com.smartgwt.client.widgets.grid.ListGridField;  
-import com.smartgwt.client.widgets.layout.VLayout;  
-import com.smartgwt.client.widgets.grid.ListGridRecord;  
-import com.smartgwt.client.widgets.grid.events.CellClickEvent;  
-import com.smartgwt.client.widgets.grid.events.CellClickHandler;  
-import com.smartgwt.client.widgets.grid.events.CellContextClickEvent;  
-import com.smartgwt.client.widgets.grid.events.CellContextClickHandler;  
-import com.smartgwt.client.widgets.grid.events.CellDoubleClickEvent;  
-import com.smartgwt.client.widgets.grid.events.CellDoubleClickHandler;  
-import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;  
-import com.smartgwt.client.widgets.form.fields.events.ChangedHandler; 
-
-import ua.nure.lmvz.lab.client.CountrySampleData;  
+import com.smartgwt.client.widgets.form.DynamicForm;
+import com.smartgwt.client.widgets.form.fields.IPickTreeItem;
+import com.smartgwt.client.widgets.form.fields.RadioGroupItem;
+import com.smartgwt.client.widgets.form.fields.SelectItem;
+import com.smartgwt.client.widgets.form.fields.events.ChangeEvent;
+import com.smartgwt.client.widgets.form.fields.events.ChangeHandler;
+import com.smartgwt.client.widgets.grid.ListGrid;
+import com.smartgwt.client.widgets.grid.ListGridField;
+import com.smartgwt.client.widgets.grid.ListGridRecord;
+import com.smartgwt.client.widgets.grid.events.CellClickEvent;
+import com.smartgwt.client.widgets.grid.events.CellClickHandler;
+import com.smartgwt.client.widgets.layout.HStack;
+import com.smartgwt.client.widgets.layout.VLayout;
+import com.smartgwt.client.widgets.layout.VStack;
+import com.smartgwt.client.widgets.tab.Tab;
+import com.smartgwt.client.widgets.tab.TabSet;
+import com.smartgwt.client.widgets.tree.Tree;
+import com.smartgwt.client.widgets.tree.TreeNode;
 
   
 public class Lab2 implements EntryPoint {  
@@ -228,33 +200,29 @@ public class Lab2 implements EntryPoint {
                             		new DepertmentTreeNode("Оксибрал (Oxybral)"),
                             		new DepertmentTreeNode("Теоверин (Theoverinum)"),
                             		new DepertmentTreeNode("Флунаризин (Flunarizin)"))));
-    public void onModuleLoad() {  
-    	//final DynamicForm form3 = new DynamicForm();  
+    @SuppressWarnings("rawtypes")
+	public void onModuleLoad() {  
         
     	final TabSet topTabSet = new TabSet();  
         topTabSet.setWidth(800); 
         topTabSet.setHeight(500);
-      //  form3.addChild(topTabSet);
 
         final DynamicForm form = new DynamicForm();  
-        form.setNumCols(2);
-  /*
-        SupplyCategoryXmlDS dataSource = SupplyCategoryXmlDS.getInstance();  
-        IPickTreeItem categoryItem = new IPickTreeItem();  
-        categoryItem.setTitle("Category");  
-        Tree tree = new Tree();
-        categoryItem.setDataSource(dataSource);  
-        categoryItem.setCanSelectParentItems(true);     
-        categoryItem.setValueTree(tree);  
-     */ 
+        form.setNumCols(4);
+        form.setColWidths("200px", "100px");
+        
         Tree tree = new Tree();  
         tree.setRoot(departmentRoot);  
         final Label label1 = new Label(); 
         label1.setContents(" ");
         label1.setWidth("100%");
         label1.setWrap(true); 
+        
         IPickTreeItem departmentItem1 = new IPickTreeItem();  
-        departmentItem1.setTitle("Выберите лекарство");  
+        departmentItem1.setTitle("Выберите лекарство");
+        departmentItem1.setColSpan(2);
+        departmentItem1.setWidth(200);
+        departmentItem1.setDefaultValue("Выберите препарат");
         departmentItem1.setValueField("name");  
         departmentItem1.setValueTree(tree);  
         Tab tTab1 = new Tab("Интерфейс №1: \"Дерево\"");
@@ -269,13 +237,13 @@ public class Lab2 implements EntryPoint {
         Canvas tabPane1 = new Canvas();  
         tabPane1.addChild(form);
         tabPane1.addChild(label1);
-        form.draw();  
+        form.draw(); 
         tTab1.setPane(tabPane1);
         
         Tab tTab2 = new Tab("Интерфейс №2: \"Зависимые combobox\"");
         final DynamicForm form2 = new DynamicForm();  
         form2.setWidth("100%");  
-        form2.setNumCols(4);
+        form2.setNumCols(3);
         form2.setColWidths("200px", "100px");
         final Map<String, String[]> departments = new HashMap<String, String[]>();  //коллекция связей для второго чекбокса первое-значние первого чекбокса-второе-коллекция элементов второго
         departments.put("Антисептические лекарственные средства", new String[]{"Галоиды, окислители и альдегиды", "Препараты кислот и щелочей", "Противомикробные и противопаразитарные лекарственные средства"});  
@@ -286,7 +254,9 @@ public class Lab2 implements EntryPoint {
         departments.put("Сердечно-сосудистые лекарственные средства", new String[]{"Ангиопротекторные лекарственные средства", "Антисклеротические лекарственные средства","Лекарственные средства, улучшающие мозговое кровообращение"}); 
         
         SelectItem divisionItem = new SelectItem();  
-        divisionItem.setName("division");  
+        divisionItem.setName("division"); 
+        divisionItem.setWidth(300);
+        divisionItem.setColSpan(2);  
         divisionItem.setTitle("Выберите категорию лекарств");  
         divisionItem.setValueMap("Антисептические лекарственные средства", "Гормоны, их аналоги и антигормональные лекарственные средства","Лекарственные средства, применяемые для лечения бронхов и лёгких", "Противозачаточные лекарственные средства","Противомикробные и противопаразитарные лекарственные средства","Сердечно-сосудистые лекарственные средства");  
         divisionItem.addChangeHandler(new ChangeHandler() {  
@@ -295,7 +265,7 @@ public class Lab2 implements EntryPoint {
                 form2.getField("department").setValueMap(departments.get(selectedItem));  
             }  
         });  
-        divisionItem.setWidth(300);
+
         final Map<String, String[]> departments2 = new HashMap<String, String[]>();  
         departments2.put("Галоиды, окислители и альдегиды", new String[]{"Бетадин (Betadine)","Капсиол (Capsiol)", "Керасал (Kerasal)",  "Перекиси водорода раствор (SolutioHydrogen!! peroxydidiluta)"}); 
         departments2.put("Препараты кислот и щелочей", new String[]{"Скинорен (Skinoren)"});
@@ -320,15 +290,19 @@ public class Lab2 implements EntryPoint {
         
         SelectItem departmentItem = new SelectItem(); 
         departmentItem.setWidth(300);
+        departmentItem.setColSpan(2);
+        departmentItem.setRowSpan(2);
         departmentItem.setName("department");  
         departmentItem.setTitle("Выберите подгруппу");  
-        departmentItem.setAddUnknownValues(false);  
+        departmentItem.setAddUnknownValues(false); 
+
         SelectItem departmentItem3 = new SelectItem();
         departmentItem3.setName("health");  
         departmentItem3.setTitle("Выберите препарат");  
         departmentItem3.setAddUnknownValues(false);
         departmentItem3.setWidth(300);
-        departmentItem3.setRowSpan(2);
+        departmentItem3.setRowSpan(3);
+        departmentItem3.setColSpan(2);
         departmentItem.addChangeHandler(new ChangeHandler() {  
             public void onChange(ChangeEvent event) {  
                 String selectedItem = (String) event.getValue();  
