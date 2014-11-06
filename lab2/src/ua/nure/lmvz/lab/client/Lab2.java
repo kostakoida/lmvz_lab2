@@ -7,6 +7,7 @@ import java.util.Map;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.user.client.ui.InlineLabel;
 import com.google.gwt.user.client.ui.RootPanel;
+import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Canvas;
 import com.smartgwt.client.widgets.IButton;
@@ -29,6 +30,8 @@ import com.smartgwt.client.widgets.tab.Tab;
 import com.smartgwt.client.widgets.tab.TabSet;
 import com.smartgwt.client.widgets.tree.Tree;
 import com.smartgwt.client.widgets.tree.TreeNode;
+import com.smartgwt.client.widgets.form.fields.events.ChangedEvent;  
+import com.smartgwt.client.widgets.form.fields.events.ChangedHandler;  
 
   
 public class Lab2 implements EntryPoint {  
@@ -206,11 +209,11 @@ public class Lab2 implements EntryPoint {
     	final TabSet topTabSet = new TabSet();  
         topTabSet.setWidth(800); 
         topTabSet.setHeight(500);
-
-        final DynamicForm form = new DynamicForm();  
-        form.setNumCols(4);
-        form.setColWidths("200px", "100px");
         
+        final DynamicForm form = new DynamicForm();  
+        form.setNumCols(3);
+        form.setColWidths("300px", "100px");
+        form.setWidth(750);
         Tree tree = new Tree();  
         tree.setRoot(departmentRoot);  
         final Label label1 = new Label(); 
@@ -221,10 +224,12 @@ public class Lab2 implements EntryPoint {
         IPickTreeItem departmentItem1 = new IPickTreeItem();  
         departmentItem1.setTitle("Выберите лекарство");
         departmentItem1.setColSpan(2);
-        departmentItem1.setWidth(200);
+        departmentItem1.setWidth(250);
+        form.setLeft(25);
         departmentItem1.setDefaultValue("Выберите препарат");
         departmentItem1.setValueField("name");  
         departmentItem1.setValueTree(tree);  
+        
         Tab tTab1 = new Tab("Интерфейс №1: \"Дерево\"");
         form.setItems(departmentItem1);
         departmentItem1.addChangeHandler(new ChangeHandler() {  
@@ -234,7 +239,8 @@ public class Lab2 implements EntryPoint {
             }  
         });
         label1.draw();
-        Canvas tabPane1 = new Canvas();  
+        Canvas tabPane1 = new Canvas(); 
+       
         tabPane1.addChild(form);
         tabPane1.addChild(label1);
         form.draw(); 
@@ -652,8 +658,7 @@ public class Lab2 implements EntryPoint {
         
         CategoriesRad.setShowTitle(false); 
         CategoriesRad.setValueMap(CategoriesMap);  
-        CategoriesRad.setDefaultValue(step1); 
-        CategoriesRad.setPickerIconStyle("pickers");
+        CategoriesRad.setDefaultValue((String)CategoriesMap.keySet().iterator().next()); 
         final RadioGroupItem categRad = new RadioGroupItem();  
         categRad.setShowTitle(false);   
         
@@ -661,18 +666,16 @@ public class Lab2 implements EntryPoint {
         medecRad.setPickerIconStyle("pickers");
         medecRad.setShowTitle(false);   
         form4.setColWidths("1px", "400px");
-        form4.setWrapItemTitles(false);
-        form4.setWidth(800);form41.setWidth(800);form42.setWidth(800);
         form41.setColWidths("1px", "400px");
         form42.setColWidths("1px", "400px");
         form4.setFields(CategoriesRad);
         label41.setMargin(0);
-        
         label41.setStyleName("labels2");
         final IButton next = new IButton();
         next.setTop(300); next.setLeft(350);
         next.setTitle("Выбрать");
-
+        form41.setFields(categRad);
+		form42.setFields(medecRad);
         final IButton previous = new IButton();
         next.addClickHandler(new com.smartgwt.client.widgets.events.ClickHandler() {
         	public void onClick(com.smartgwt.client.widgets.events.ClickEvent event) {
@@ -686,7 +689,8 @@ public class Lab2 implements EntryPoint {
         			form4.hide();
         			form41.show();
         			categRad.setValueMap(categories.get(selectedItem));
-        			form41.setFields(categRad);
+
+        			categRad.setDefaultValue((String)categories.get(selectedItem).keySet().iterator().next()); 
         			label41.setContents(selectedItem);
         			}
         		}
@@ -695,21 +699,33 @@ public class Lab2 implements EntryPoint {
         			if(selectedItem=="" || selectedItem==null)
         				SC.say("Shit");
         			else{
+        			
         			form41.hide();
         			form42.show();
-        			medecRad.setValueMap(medecines.get(selectedItem));
-        			form42.setFields(medecRad);
         			label41.setContents(null);
+        			medecRad.setValueMap(medecines.get(selectedItem));
+        			medecRad.setDefaultValue((String)medecines.get(selectedItem).keySet().iterator().next());
+
+        	        step2 = (String)medecines.get(selectedItem).keySet().iterator().next();
         			label41.setContents(selectedItem);
         			}
     			}
         		else if(form42.isVisible()){
         			label4.show();
-        			label4.setContents("Вы выбрали " + (String) medecRad.getValue() + " Описание: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+        			
+        			label4.setContents("Вы выбрали " + step2 + " Описание: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
         		}
         		
         	}
         });
+        label4.setWidth(780);
+        label41.setWidth(780);
+        medecRad.addChangedHandler(new ChangedHandler() {  
+            public void onChanged(ChangedEvent event) {  
+                step2 = ((String)event.getValue());  
+                 
+            }  
+        }); 
         previous.hide();
         previous.setTop(300); previous.setLeft(200);
         previous.setTitle("Назад");
@@ -747,12 +763,12 @@ public class Lab2 implements EntryPoint {
         vStack4.addMember(label4);
         vStack4.setMembersMargin(5);
         tTab4.setPane(vStack4);
-        
+        form4.setAlign(Alignment.CENTER);
         Canvas tabPane4 = new Canvas();  
         tabPane4.addChild(vStack4);
         form4.draw();  
         tTab4.setPane(tabPane4);
-
+        vStack4.setAlign(Alignment.CENTER);
 
   
         topTabSet.addTab(tTab1);  

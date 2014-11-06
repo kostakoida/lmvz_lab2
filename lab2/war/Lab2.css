@@ -1,6 +1,12 @@
 /** Add css rules here for your application. */
-
-
+.tabSetContainer
+{
+	borded-size:0px;
+}
+body
+{
+	background-image: url('gradient.jpg');
+}
 /** Example rules used by the template application (remove for your app) */
 h1 {
   font-size: 2em;
@@ -10,6 +16,14 @@ h1 {
 }
 .tabSetContainer{
 	background-color: transparent !important;
+}
+.labelAnchor
+{
+	width: 600px;
+}
+.formTitle
+{
+	width:300px;
 }
 .labels2
 {
